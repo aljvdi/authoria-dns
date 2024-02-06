@@ -24,5 +24,8 @@
             "Javadi\\Authoria\\DNS\\controllers\\": "controllers/"
         }
     },
+    "scripts": {
+        "test": "phpunit tests/test_dns.php"
+    },
     "minimum-stability": "dev"
 }
