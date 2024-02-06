@@ -17,5 +17,11 @@
             "email": "alex@aljm.org"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Javadi\\Authoria\\DNS\\models\\": "models/",
+            "Javadi\\Authoria\\DNS\\controllers\\": "controllers/"
+        }
+    },
     "minimum-stability": "dev"
 }
