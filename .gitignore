@@ -1,3 +1,6 @@
 /vendor/
 /.idea/
 /.vscode/
+
+# Ignore the database file, to create it run `php /db/init.php`
+/db/dns.db

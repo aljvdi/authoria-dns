@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dd9541754277b02773dc2338172b4826",
+    "content-hash": "23262281c201efcbcac0b429d0c032a2",
     "packages": [
         {
             "name": "bramus/router",
@@ -716,12 +716,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "ec81868d18ba9d6df2865e84e04b8085ff716e9e"
+                "reference": "97fd4b9fa4a87bbf2fe4f5da796273f973e9ab08"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/ec81868d18ba9d6df2865e84e04b8085ff716e9e",
-                "reference": "ec81868d18ba9d6df2865e84e04b8085ff716e9e",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/97fd4b9fa4a87bbf2fe4f5da796273f973e9ab08",
+                "reference": "97fd4b9fa4a87bbf2fe4f5da796273f973e9ab08",
                 "shasum": ""
             },
             "require": {
@@ -809,7 +809,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-02-06T12:42:49+00:00"
+            "time": "2024-02-06T15:32:40+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -1810,7 +1810,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "ext-sqlite3": "*"
+        "ext-sqlite3": "*",
+        "ext-pdo_sqlite": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.6.0"
