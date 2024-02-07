@@ -34,7 +34,7 @@ class APIController
     public function newRequest(): void
     {
         $domain = $_POST['domain'];
-        $ttl = $_POST['ttl'] ?? 300000;
+        $ttl = $_POST['ttl'] ?? 300;
 
         if (!empty($domain)) {
             $domain_exists = checkdnsrr($domain, 'NS');

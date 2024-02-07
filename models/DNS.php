@@ -21,14 +21,14 @@ class DNS
     /**
      * Get the DNS records for a domain.
      * @param string $domain The domain to verify.
-     * @param int|null $ttl The TTL of verification token in ms, if null, it will be set to 300000 (5 minutes).
+     * @param int|null $ttl The TTL of verification token in second, if null, it will be set to 300 (5 minutes).
      * @return string The verification UUID.
      */
     public function newRequest(string $domain, ?int $ttl): string
     {
         $this->_db->getDBInstance()->insert('dns', [
             'domain' => $domain,
-            'ttl' => $ttl ?? 300000,
+            'ttl' => $ttl ?? 300,
             'uid' => $uuid = DB::uuidV4(),
             'verified' => 0,
             'created_at' => time()
@@ -61,7 +61,7 @@ class DNS
 
         if ($record && $record['verified'] == 0) {
             // check ttl
-            if (time() * 1000 - $record['created_at'] > $record['ttl']) {
+            if (time() - $record['created_at'] > $record['ttl']) {
                 return false;
             }
 
@@ -87,8 +87,13 @@ class DNS
                 'id' => $record['uid'],
                 'domain' => $record['domain'],
                 'verified' => $record['verified'] == 1,
-                'status' => $record['verified'] ? 'VERIFIED' : (time() * 1000 - $record['created_at'] > $record['ttl'] ? 'EXPIRED' : 'PENDING'),
+                'status' => $record['verified'] ? 'VERIFIED' : (time() - $record['created_at'] > $record['ttl'] ? 'EXPIRED' : 'PENDING'),
             ];
-        }, $this->_db->getDBInstance()->select('dns', '*', ['uid' => $uuid]))[0];
+        }, $this->_db->getDBInstance()->select('dns', '*', ['uid' => $uuid]))[0] ?? [
+            'id' => $uuid,
+            'domain' => "unkown.tld",
+            'verified' => false,
+            'status' => 'NOT_FOUND'
+        ];
     }
 }
