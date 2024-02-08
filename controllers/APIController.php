@@ -20,6 +20,30 @@ class APIController
         header('X-Powered-By: Javadi-Authoria-DNS/0.0.1');
     }
 
+    /**
+     * Check if the API is the one we are looking for.
+     * @return void
+     */
+    public function isThatAuthoria(): void
+    {
+        echo json_encode([
+            'authoria' => true,
+            'time' => time()
+        ]);
+    }
+
+    /**
+     * Check if the API is alive and if the server has internet access.
+     * @return void
+     */
+    public function aliveCheck(): void
+    {
+        echo json_encode([
+            'api-alive' => true,
+            'internet' => !empty(dns_get_record('google.com', DNS_NS))
+        ]);
+    }
+
     public function notFound(): void
     {
         echo json_encode(['error' => 'Endpoint not found.']);
