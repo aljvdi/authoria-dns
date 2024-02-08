@@ -96,4 +96,23 @@ class DNS
             'status' => 'NOT_FOUND'
         ];
     }
+
+    /**
+     * Check if a domain is valid. Basically, it checks if the domain exists (has NS records), is not a reserved domain, has a valid TLD, and is in a valid format.
+     * @param string $domain The domain to check. (e.g. example.com)
+     * @return bool True if the domain is valid, false if not.
+     */
+    public static function domainValidator(string $domain): bool
+    {
+        $domain_exists = checkdnsrr($domain, 'NS');
+        $invalid_or_reserved_domains = ['localhost'];
+        $invalid_tlds = ['test', 'example', 'invalid', 'localhost','onion','home','local'];
+        $domains_valid_regex_format = '/^([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$/';
+
+        return $domain_exists // Domain exists
+            && !in_array($domain, $invalid_or_reserved_domains) // Domain is not invalid or reserved
+            && !in_array(explode('.', $domain)[1], $invalid_tlds) // TLD is not invalid
+            && preg_match($domains_valid_regex_format, $domain); // Domain is in a valid format
+
+    }
 }

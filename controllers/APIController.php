@@ -61,8 +61,7 @@ class APIController
         $ttl = $_POST['ttl'] ?? 300;
 
         if (!empty($domain)) {
-            $domain_exists = checkdnsrr($domain, 'NS');
-            if ($domain_exists) {
+            if (DNS::domainValidator($domain)) {
                 $uuid = $this->_dns->newRequest($domain, $ttl);
                 echo json_encode([
                     'id' => $uuid,
@@ -71,7 +70,7 @@ class APIController
                     'expires_at' => time() + $ttl
                 ]);
             } else {
-                echo json_encode(['error' => 'Domain does not exist.']);
+                echo json_encode(['error' => 'Domain does not exist or is invalid.']);
             }
         } else {
             echo json_encode(['error' => 'Domain is required.']);

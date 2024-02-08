@@ -34,4 +34,12 @@ class test_dns extends TestCase
         $verified = $this->dns->verifyRequest($uuid);
         $this->assertIsBool($verified);
     }
+
+    public function testDomainValidator()
+    {
+        $this->assertTrue(DNS::domainValidator('example.com'));
+        $this->assertFalse(DNS::domainValidator('example.com.'));
+        $this->assertFalse(DNS::domainValidator('127.0.0.1')); // IP address is not a domain, BTW.
+        $this->assertFalse(DNS::domainValidator('example'));
+    }
 }
