@@ -12,6 +12,16 @@ This tool is used to verify the ownership of a domain by checking the custom TXT
 
 ## Installation
 
+### 🐳 Docker-Based
+```bash
+# Create a volume for the SQLite database (If you want to persist the data)
+docker volume create authoria-dns-db
+
+# Run the container
+docker run -d --name authoria-dns-verifier -p <YOUR_PORT>:80 -v authoria-dns-db:/var/www/html/db -e "APP_MODE=PROD" aljm/authoria-dns:lastest
+```
+
+### 💪 Non-Docker Based 
 ```bash
 # Clone the repository
 git clone git@github.com:aljvdi/authoria-dns.git
@@ -26,7 +36,7 @@ php db/init.php
 # Run the server (NOTE: this is a PHP built-in server and should not be used in production. Use a proper web server like Apache or Nginx.)
 php -S 127.0.0.1:{PORT}
 ```
-
+---
 ## Usage
 
 This project is designed to be used as an API. You can use the following endpoints to interact with the tool:
