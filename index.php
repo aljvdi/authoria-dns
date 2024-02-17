@@ -1,6 +1,14 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
 
+if (!empty($_ENV['APP_MODE'])
+    && in_array(strtoupper($_ENV['APP_MODE']), ['PROD', 'DEV'])
+    && strtoupper($_ENV['APP_MODE']) === 'PROD'
+) {
+    error_reporting(0);
+    ini_set('display_errors', '0');
+}
+
 $router = new \Bramus\Router\Router();
 $router->setNamespace('\Javadi\Authoria\DNS\controllers');
 $router->before('GET|POST|PUT|DELETE|OPTIONS|PATCH|HEAD', '/.*', 'APIController@init');
