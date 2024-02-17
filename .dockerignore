@@ -1,0 +1,11 @@
+/vendor/
+/.idea/
+/.vscode/
+/tests/
+/.git/
+
+# Ignore misc files
+/db/dns.db
+/TODOs.md
+/README.md
+dockerfile
