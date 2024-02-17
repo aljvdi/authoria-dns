@@ -2,3 +2,30 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . index.php [L]
+
+# Block access to directories
+Options -Indexes
+
+# Block access to composer files (.json, .lock, .phar)
+<FilesMatch "(composer\.(json|lock)|\.phar)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Block access to dot files
+<FilesMatch "^\.">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Block access to db folder and direct download of .db file
+<FilesMatch "\.db$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Block access to vendor folder
+<DirectoryMatch "^vendor">
+    Order Allow,Deny
+    Deny from all
+</DirectoryMatch>
