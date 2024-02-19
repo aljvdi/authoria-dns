@@ -1,0 +1,20 @@
+name: Deploy to Github Container Registry
+
+on:
+  push:
+      branches:
+        - main
+
+
+jobs:
+    build_and_deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Build and Push
+              run: |
+                docker login -u ${{ secrets.GHCR_U }} -p ${{ secrets.GHCR_DK }} ghcr.io
+                docker build -t ghcr.io/aljvdi/authoria-dns:latest .
+                docker push ghcr.io/aljvdi/authoria-dns:latest

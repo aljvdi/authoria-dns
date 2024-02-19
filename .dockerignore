@@ -3,6 +3,7 @@
 /.vscode/
 /tests/
 /.git/
+/.github/
 
 # Ignore misc files
 /db/dns.db
