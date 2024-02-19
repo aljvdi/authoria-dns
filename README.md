@@ -18,7 +18,10 @@ This tool is used to verify the ownership of a domain by checking the custom TXT
 docker volume create authoria-dns-db
 
 # Run the container
-docker run -d --name authoria-dns-verifier -p <YOUR_PORT>:80 -v authoria-dns-db:/var/www/html/db -e "APP_MODE=PROD" aljm/authoria-dns:lastest
+docker run -d --name authoria-dns-verifier -p <YOUR_PORT>:80 -v authoria-dns-db:/var/www/html/db -e "APP_MODE=PROD" aljm/authoria-dns:latest
+
+# OR using Github Container Registry (GHCR)
+docker run -d --name authoria-dns-verifier -p <YOUR_PORT>:80 -v authoria-dns-db:/var/www/html/db -e "APP_MODE=PROD" ghcr.io/aljvdi/authoria-dns:latest
 ```
 
 ### 💪 Non-Docker Based 
