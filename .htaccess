@@ -24,8 +24,8 @@ Options -Indexes
     Deny from all
 </FilesMatch>
 
-# Block access to vendor folder
-<DirectoryMatch "^vendor">
+# If file starts with vendor/ deny access
+<FilesMatch "^vendor/">
     Order Allow,Deny
     Deny from all
-</DirectoryMatch>
+</FilesMatch>
